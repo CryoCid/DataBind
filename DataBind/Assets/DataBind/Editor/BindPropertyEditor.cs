@@ -55,11 +55,12 @@ public class BindPropertyEditor : Editor
 
 		foreach (var comp in components) {
 			foreach (var property in comp.GetType().GetProperties()) {
-				if (property.Name == selectedProperty) {
+				string propertyFullName = comp.GetType().Name + "/" + property.Name;
+				if (propertyFullName == component.GetType().Name + "/" + selectedProperty) {
 					selectedIndex = propertyNames.Count;
 				}
 
-				propertyNames.Add(comp.name + "/" + property.Name);
+				propertyNames.Add(propertyFullName);
 				properties.Add(new PropertyDescription(property.Name, comp));
 			}
 		}
